@@ -1,9 +1,13 @@
-import { Stack } from "expo-router";
+import {Stack} from 'expo-router'
+import {GluestackUIProvider} from '@gluestack-ui/themed'
+import {config} from '@gluestack-ui/config'
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="index" />
-    </Stack>
+    <GluestackUIProvider config={config}>
+      <Stack>
+        <Stack.Screen name="index" options={{headerShown: false}} />
+      </Stack>
+    </GluestackUIProvider>
   );
 }
