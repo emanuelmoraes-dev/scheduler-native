@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {Header} from './Header'
 import {useDateInfo} from '@/hooks/useDateInfo'
 import {captalizeWeekDay} from '@/utils/date-utils'
@@ -11,7 +11,9 @@ export function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <Header dateInfo={dateInfo}/>
-      <Tasks dateInfo={dateInfo} style={styles.tasks}/>
+      <View style={styles.tasks}>
+        <Tasks dateInfo={dateInfo}/>
+      </View>
     </SafeAreaView>
   )
 }
@@ -21,6 +23,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   tasks: {
-    marginTop: 4
+    marginTop: 4,
+    alignSelf: 'stretch'
   }
 })
