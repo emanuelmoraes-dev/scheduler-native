@@ -1,3 +1,4 @@
+import {HEADER_COLOR} from '@/constants/colors'
 import {DateInfo} from '@/hooks/useDateInfo'
 import {useDoublePress} from '@/hooks/useDoublePress'
 import {AntDesign} from '@expo/vector-icons'
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        backgroundColor: '#0099CC',
+        backgroundColor: HEADER_COLOR,
         paddingVertical: 5
     },
     headerLeftIcon: {

@@ -1,3 +1,4 @@
+import {PRIMARY_COLOR, SECUNDARY_COLOR} from '@/constants/colors'
 import {TaskData} from '@/data/task-data'
 import {DateInfo} from '@/hooks/useDateInfo'
 import {useGroupBy} from '@/hooks/useGroupBy'
@@ -50,7 +51,7 @@ export function Tasks({dateInfo}: TasksProps) {
 
 const styles = StyleSheet.create({
     groupTitle: {
-        backgroundColor: '#FABB44',
+        backgroundColor: SECUNDARY_COLOR,
         paddingVertical: 5,
         paddingHorizontal: 15,
         marginVertical: 4
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     groupItem: {
-        backgroundColor: '#FF7F50',
+        backgroundColor: PRIMARY_COLOR,
         paddingVertical: 10,
         paddingHorizontal: 30,
         marginVertical: 4
