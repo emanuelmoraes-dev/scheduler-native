@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        backgroundColor: 'blue',
+        backgroundColor: '#0099CC',
         paddingVertical: 5
     },
     headerLeftIcon: {
