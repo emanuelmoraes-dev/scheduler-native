@@ -1,32 +1,28 @@
 import {PRIMARY_COLOR, SECUNDARY_COLOR} from '@/constants/colors'
-import {TaskData} from '@/data/task-data'
+import {DATE_FORMAT, TaskData} from '@/data/task-data'
 import {DateInfo} from '@/hooks/useDateInfo'
 import {useGroupBy} from '@/hooks/useGroupBy'
-import {addDays, format, set} from 'date-fns'
-import {useState} from 'react'
+import {selectTask} from '@/store/store'
+import {format, parse, startOfDay} from 'date-fns'
 import {FlatList, ListRenderItem, StyleSheet, Text, View} from 'react-native'
+import {useSelector} from 'react-redux'
 
 export interface TasksProps {
     dateInfo: DateInfo
 }
 
 export function Tasks({dateInfo}: TasksProps) {
-    const now = new Date()
-    const [tasks] = useState([
-        {name: 'I did it!', date: set(now, {hours: 10, minutes: 30})},
-        {name: 'I Did it Again!', date: set(now, {hours: 13})},
-        {name: 'I Will Do it Again Tomorow!', date: set(addDays(now, 1), {hours: 17})}
-    ])
+    const tasks = useSelector(selectTask).data
 
     const groupedTasks = useGroupBy(tasks, {
-        getGroup: task => format(task.date, 'HH:mm'),
-        getFilter: task => dateInfo.toText(task.date),
+        getGroup: task => format(parse(task.date, DATE_FORMAT, startOfDay(new Date())), 'HH:mm'),
+        getFilter: task => dateInfo.toText(parse(task.date, DATE_FORMAT, startOfDay(new Date()))),
         filter: dateInfo.text
     })
 
     const renderTask: ListRenderItem<TaskData> = ({item}) => (
         <View style={styles.groupItem}>
-            <Text style={styles.groupItemText}>{item.name}</Text>
+            <Text style={styles.groupItemText}>{item.title}</Text>
         </View>
     )
 

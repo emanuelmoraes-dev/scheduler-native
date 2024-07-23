@@ -2,6 +2,7 @@ import {HEADER_COLOR} from '@/constants/colors'
 import {DateInfo} from '@/hooks/useDateInfo'
 import {useDoublePress} from '@/hooks/useDoublePress'
 import {AntDesign} from '@expo/vector-icons'
+import {addDays} from 'date-fns'
 import {StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native'
 
 export interface HeaderProps {
@@ -16,11 +17,11 @@ export function Header({dateInfo}: HeaderProps) {
     }
 
     function onPressLeft(): void {
-        dateInfo.setDate(new Date(dateInfo.date.getTime() - 24*60*60*1000))
+        dateInfo.setDate(addDays(dateInfo.date, -1))
     }
 
     function onPressRight(): void {
-        dateInfo.setDate(new Date(dateInfo.date.getTime() + 24*60*60*1000))
+        dateInfo.setDate(addDays(dateInfo.date, 1))
     }
 
     return (

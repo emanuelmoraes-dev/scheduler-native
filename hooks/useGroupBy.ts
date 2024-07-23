@@ -15,6 +15,10 @@ export interface GroupedOptions<T> {
 export function useGroupBy<T>(list: T[], options: GroupedOptions<T>): Grouped<T>[] {
     const [groupedList, setGroupedList] = useState<Grouped<T>[]>([])
 
+    const deps: unknown[] = [list]
+    if (options.filter) {
+        deps.push(options.filter)
+    }
     useEffect(() => {
         let newList: T[] = list
 
@@ -39,7 +43,7 @@ export function useGroupBy<T>(list: T[], options: GroupedOptions<T>): Grouped<T>
             }, [] as Grouped<T>[])
 
         setGroupedList(newGroupedList)
-    }, options.filter ? [options.filter] : [])
+    }, deps)
 
     return groupedList
 }
